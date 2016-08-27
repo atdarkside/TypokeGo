@@ -1,4 +1,6 @@
 $(function(){
+
+
 	$(".input-wra input")
 		.focusin(function(e) {
 			$(".candidate").show();
@@ -12,6 +14,10 @@ $(function(){
 				$(".candidate").hide();
 			},500);
     	});
+
+    	setTimeout(function(){
+			$("section").addClass("active");
+		},300);
 });
 
 /*
