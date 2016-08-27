@@ -26,6 +26,23 @@ function reducer(state, action) {
       })
     case 'RESET':
       return initialState
+    case 'TYPE':
+      const playingLine = state.lyrics[state.playingPart].text
+
+      if (playingLine.length <= state.validTypeCount) {
+        return state
+      }
+
+      if (playingLine[state.validTypeCount] === action.key) {
+        return Object.assign({}, state, {
+          validTypeCount: state.validTypeCount + 1,
+          invalidTypeCount: 0
+        })
+      }
+
+      return Object.assign({}, state, {
+        invalidTypeCount: state.invalidTypeCount + 1
+      })
     default:
       return state
   }

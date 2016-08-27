@@ -16,3 +16,10 @@ export function reset() {
     type: 'RESET'
   }
 }
+
+export function type(key) {
+  return {
+    type: 'TYPE',
+    key
+  }
+}
