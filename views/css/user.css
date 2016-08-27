@@ -24,6 +24,14 @@ body {
 .user-view {
 	padding: 2em 8em;
 }
+.info-wra {
+	width: 100%;
+	overflow: auto;
+}
+.info-wra:after{
+	content: "";
+	clear: both;
+}
 .user-view .min-title {
 	font-family: 'Righteous', cursive;
 	font-size: 4em;
@@ -36,10 +44,11 @@ body {
 }
 .user-view .user-info .icon-box {
 	width: 8em;
-	box-shadow: 7px 7px 7px rgba(255,255,255,.15);
 }
 .user-view .user-info .icon-box img {
 	width: 100%;
+	border-radius: 4px;
+	box-shadow: 7px 7px 7px rgba(255,255,255,.15);
 }
 .user-view .user-info .user-text {
 	position: relative;
@@ -76,7 +85,9 @@ body {
 	padding: .5em;
 }
 .user-view .user-info .user-text .Twitter i {
-	padding: .25em;
-	font-size: 2.5em;
-	color: rgba(0,0,0,0.5);
+	padding: .5em;
+	font-size: 2em;
+	color: rgba(210,210,210,0.6);
 }
+
+
