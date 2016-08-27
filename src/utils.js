@@ -1,21 +1,13 @@
+import _ from 'lodash'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import * as actions from './actions'
 
 
-function mapStateToProps(state) {
-  return state
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators(actions, dispatch)
-  }
-}
-
-export const container = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)
-
+export const container = connect(_.identity, dispatch => bindActionCreators(actions, dispatch))
 export const timerInterval = 0.1
+export const initialState = {
+  lyrics: null,
+  elapsedTime: 0,
+  playingPart: -1
+}

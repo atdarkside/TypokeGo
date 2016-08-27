@@ -11,8 +11,8 @@ export function updateTimer() {
   }
 }
 
-export function resetTimer() {
+export function reset() {
   return {
-    type: 'RESET_TIMER'
+    type: 'RESET'
   }
 }

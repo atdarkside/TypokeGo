@@ -7,7 +7,7 @@ import LyricPart from '../components/lyricpart'
 class Play extends React.Component {
   componentWillMount() {
     const trackId = 0
-    this.props.actions.fetchLyrics(trackId)
+    this.props.fetchLyrics(trackId)
   }
 
   componentWillReceiveProps(nextProps) {
@@ -18,7 +18,7 @@ class Play extends React.Component {
 
   componentWillUnmount() {
     clearInterval(this.timer)
-    this.props.actions.resetTimer()
+    this.props.resetTimer()
   }
 
   render() {  // TODO: 歌詞の取得に失敗した時の表示
@@ -35,7 +35,7 @@ class Play extends React.Component {
   }
 
   startTimer() {
-    this.timer = setInterval(this.props.actions.updateTimer.bind(this), timerInterval * 1000)
+    this.timer = setInterval(this.props.updateTimer.bind(this), timerInterval * 1000)
   }
 }
 
