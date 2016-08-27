@@ -8,6 +8,7 @@ var mongoose   = require('mongoose');
 //mongoose.connect('mongodb://localhost/TypokeGo');
 
 var User = require('./models/user');
+var Score = require('./models/score');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -36,13 +37,6 @@ router.get('/test', function(req, res) {
     res.json({ message: 'TypokeGo api server .' });
 });
 
-router.get('/user/information/load', function(req, res) {
-    User.find(function(err,users) {
-    	if(err)
-    		res.send(err);
-    	res.json({ message: 'nice.'});
-    });
-});
 
 //No test
 router.post('/user/information/save', function(req, res) {
@@ -58,6 +52,39 @@ router.post('/user/information/save', function(req, res) {
 			res.send(err);
 		res.json({ message: 'やったぜ。' });
 	});
+});
+
+//No test
+router.get('/user/information/load', function(req, res) {
+    User.find(function(err,users) {
+    	if(err)
+    		res.send(err);
+    	res.json(users);
+    });
+});
+
+//No test
+router.post('/score/save', function(req, res) {
+    
+    var score = new Score();
+    score.twitterID = req.body.twitterID;
+    score.musicID = req.body.musicID;
+    score.score = req.body.score;
+
+    score.save(function(err) {
+    	if(err)
+    		res.send(err);
+    	res.json({ message: '通報すると金になるんか？'});
+    });
+});
+
+//No test
+router.post('/score/save', function(req, res) {
+    Score.find(function(err,scores) {
+    	if(err)
+    		res.send(err);
+    	res.json(scores);
+    });
 });
 
 app.use('/api', router);
