@@ -5,7 +5,7 @@ var app        = express();
 var bodyParser = require('body-parser');
 var mongoose   = require('mongoose');
 
-//mongoose.connect('mongodb://localhost/TypokeGo');
+mongoose.connect('mongodb://localhost/TypokeGo');
 
 var User = require('./models/user');
 var Score = require('./models/score');
@@ -79,8 +79,16 @@ router.post('/score/save', function(req, res) {
 });
 
 //No test
-router.post('/score/save', function(req, res) {
+router.get('/score/load', function(req, res) {
     Score.find(function(err,scores) {
+    	if(err)
+    		res.send(err);
+    	res.json(scores);
+    });
+});
+
+router.get('/score/load/:musicID', function(req, res) {
+    Score.findById(req.params.musicID, function(err,scores) {
     	if(err)
     		res.send(err);
     	res.json(scores);
