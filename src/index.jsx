@@ -5,7 +5,7 @@ import {createStore} from 'redux'
 import {Router, browserHistory} from 'react-router'
 import reducer from './reducer'
 import {initialState} from './utils'
-import './static/style.css'
+// import './static/style.css'
 import Top from './views/top'
 import Play from './views/play'
 
