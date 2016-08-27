@@ -14,11 +14,15 @@ class Play extends React.Component {
     if (this.props.lyrics !== nextProps.lyrics) {
       this.startTimer()
     }
+
+    if (this.props.isFinished) {
+      clearInterval(this.timer)
+    }
   }
 
   componentWillUnmount() {
     clearInterval(this.timer)
-    this.props.resetTimer()
+    this.props.reset()
   }
 
   render() {  // TODO: 歌詞の取得に失敗した時の表示
