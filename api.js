@@ -9,6 +9,7 @@ mongoose.connect('mongodb://localhost/TypokeGo');
 
 var User = require('./models/user');
 var Score = require('./models/score');
+var Music = require('./models/music');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -36,7 +37,6 @@ router.get('/test', function(req, res) {
 router.post('/user/save', function(req, res) {
     
 	var user = new User();
-	console.log(req.body);
 	user.twitter_id = req.body.twitter_id;
 	user.twitter_screen_name = req.body.twitter_screen_name;
 	user.name = req.body.name;
@@ -50,7 +50,7 @@ router.post('/user/save', function(req, res) {
 		user.save(function(err) {
 			if(err)
 				res.send(err);
-			res.json({ message: 'やったぜ。' });
+			res.json({ message: 'おほ～(勃起)' });
 		});
 	}
 });
@@ -64,7 +64,6 @@ router.get('/user/load', function(req, res) {
 });
 
 router.get('/user/load/:twitter_id', function(req, res) {
-	console.log(req.params.twitter_id);
     User.find({ twitter_id: req.params.twitter_id} ,function(err,user) {
     	if(err)
     		res.send(err);
@@ -75,7 +74,6 @@ router.get('/user/load/:twitter_id', function(req, res) {
 router.post('/score/save', function(req, res) {
     
     var score = new Score();
-    console.log(req.body);
     score.twitter_id = req.body.twitter_id;
     score.music_id = req.body.music_id;
     score.score = req.body.score;
@@ -102,8 +100,6 @@ router.get('/score/load', function(req, res) {
 });
 
 router.get('/score/load/:twitter_id', function(req, res) {
-	req_sn = req.params.twitter_id;
-	console.log(req_sn);
     Score.find({ twitter_id: req.params.twitter_id}, function(err,scores) {
     	if(err)
     		res.send(err);
@@ -116,13 +112,49 @@ router.get('/score/lanking/list/:music_id', function(req, res) {
 
     	if(err)
     		res.send(err);
-    	console.log(scores);
     	scores.sort(function(a,b){
     		if(a.score > b.score) return -1;
     		if(a.score < b.score) return 1;
     		return 0;
     	});
     	res.json(scores);
+    });
+});
+
+router.post('/music/save', function(req, res) {
+
+    var music = Music();
+    music.music_id = req.body.music_id;
+    music.title = req.body.title;
+    music.artists = req.body.artists;
+    music.icon = req.body.icon;
+
+    if(music.music_id == null || music.title == null ||
+       music.artists == null  || music.icon == null) {
+    	res.json({ message: 'No parameters',
+    			   error: '404'});
+    } else {
+    	music.save(function(err) {
+    		if(err)
+    			res.send(err);
+    		res.json({ message: '今日も一日頑張るぞい！'});
+    	});
+    }
+});
+
+router.get('/music/load', function(req, res) {
+    Music.find(function(err,musics){
+    	if(err)
+    		res.send(err);
+    	res.json(musics);
+    });
+});
+
+router.get('/music/load/:music_id', function(req, res) {
+    Music.find({ music_id: req.params.music_id }, function(err,music){
+    	if(err)
+    		req.send(err);
+    	res.json(music);
     });
 });
 
