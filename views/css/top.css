@@ -91,6 +91,7 @@ body {
 .start-view .title-box .input-wra .candidate {
 	cursor: pointer;
 	opacity: 0;
+	display: none;
 	box-shadow: 3px 3px 3px rgba(0,0,0,.3);
 	letter-spacing: 2px;
 	font-size: 1.15em;
