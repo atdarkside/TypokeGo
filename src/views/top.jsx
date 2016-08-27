@@ -1,10 +1,13 @@
 import React from 'react'
+import {container} from '../utils'
 
 
-export default class Top extends React.Component {
+class Top extends React.Component {
   render() {
     return (
       <div>ATAMA OKASHI NARUDE</div>
     )
   }
 }
+
+export default container(Top)

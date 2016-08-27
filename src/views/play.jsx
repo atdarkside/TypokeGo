@@ -1,10 +1,14 @@
 import React from 'react'
+import {container} from '../utils'
 
 
-export default class Play extends React.Component {
+class Play extends React.Component {
   render() {
     return (
       <div>HAMAMISHIO</div>
     )
   }
 }
+
+
+export default container(Play)
