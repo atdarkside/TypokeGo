@@ -10,3 +10,9 @@ export function updateTimer() {
     type: 'UPDATE_TIMER'
   }
 }
+
+export function reset() {
+  return {
+    type: 'RESET'
+  }
+}

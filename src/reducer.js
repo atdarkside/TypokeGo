@@ -1,5 +1,5 @@
 import dummyData from './static/dummy.json'
-import {timerInterval} from './utils'
+import {timerInterval, initialState} from './utils'
 
 
 function reducer(state, action) {
@@ -24,6 +24,8 @@ function reducer(state, action) {
         playingPart: state.playingPart + Number(state.lyrics[state.playingPart + 1].time.total <= state.elapsedTime),
         elapsedTime
       })
+    case 'RESET':
+      return initialState
     default:
       return state
   }

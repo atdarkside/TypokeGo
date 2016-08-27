@@ -2,19 +2,27 @@ import React from 'react'
 import {render} from 'react-dom'
 import {Provider} from 'react-redux'
 import {createStore} from 'redux'
+import {Router, browserHistory} from 'react-router'
 import reducer from './reducer'
-import App from './views/app.jsx'
+import {initialState} from './utils'
+import Top from './views/top'
+import Play from './views/play'
 
 
-const initialState = {
-  lyrics: null,
-  elapsedTime: 0,
-  playingPart: -1
-}
+const routing = [
+  {
+    path: '/',
+    component: Top
+  },
+  {
+    path: '/play/:trackId',
+    component: Play
+  }
+]
 
 render(
   <Provider store={createStore(reducer, initialState)}>
-    <App/>
+    <Router history={browserHistory} routes={routing}/>
   </Provider>,
   document.getElementsByTagName('main')[0]
 )
