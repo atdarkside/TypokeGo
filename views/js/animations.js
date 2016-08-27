@@ -1,6 +1,5 @@
 $(function(){
-	t7s_animation("h1");
-
+	t7s_animation($(".screen_name"));
 	function t7s_animation(el){
 		targetParent = $(el);
 		$(targetParent).contents().each(function() {
