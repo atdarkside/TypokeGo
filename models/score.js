@@ -2,8 +2,8 @@ var mongoose = require('mongoose');
 var Schema   = mongoose.Schema;
 
 var scoreSchema = new Schema({
-	twitterID : Number,
-	musicID : Number,
+	twitter_id : Number,
+	music_id : Number,
 	score : Number
 });
 

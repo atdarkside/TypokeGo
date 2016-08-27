@@ -33,18 +33,17 @@ router.get('/test', function(req, res) {
     res.json({ message: 'TypokeGo api server .' });
 });
 
-//No test
-router.post('/user/information/save', function(req, res) {
+router.post('/user/save', function(req, res) {
     
 	var user = new User();
 	console.log(req.body);
-	user.twitterID = req.body.twitterID;
-	user.twitterScreenName = req.body.twitterScreenName;
-	user.Name = req.body.Name;
+	user.twitter_id = req.body.twitter_id;
+	user.twitter_screen_name = req.body.twitter_screen_name;
+	user.name = req.body.name;
 	user.icon = req.body.icon;
 
-	if(!user.twitterID || !user.twitterScreenName ||
-	   !user.Name      || !user.icon){ 
+	if(!user.twitter_id || !user.twitter_screen_name ||
+	   !user.name      || !user.icon){ 
 		res.json({ message: 'No parameters', 
 				   error:   '404'});
 	} else {
@@ -56,8 +55,7 @@ router.post('/user/information/save', function(req, res) {
 	}
 });
 
-//No test
-router.get('/user/information/load', function(req, res) {
+router.get('/user/load', function(req, res) {
     User.find(function(err,users) {
     	if(err)
     		res.send(err);
@@ -65,25 +63,24 @@ router.get('/user/information/load', function(req, res) {
     });
 });
 
-//No test
-router.get('/user/information/load/:twitterID', function(req, res) {
-    User.findById(req.params.twitterID ,function(err,user) {
+router.get('/user/load/:twitter_id', function(req, res) {
+	console.log(req.params.twitter_id);
+    User.find({ twitter_id: req.params.twitter_id} ,function(err,user) {
     	if(err)
     		res.send(err);
-    	res.json(users);
+    	res.json(user);
     });
 });
 
-//No test
 router.post('/score/save', function(req, res) {
     
     var score = new Score();
     console.log(req.body);
-    score.twitterID = req.body.twitterID;
-    score.musicID = req.body.musicID;
+    score.twitter_id = req.body.twitter_id;
+    score.music_id = req.body.music_id;
     score.score = req.body.score;
 
-    if(score.twitterID == null || score.musicID == null ||
+    if(score.twitter_id == null || score.music_id == null ||
        score.score == null){
     	res.json({ message: 'No parameters', 
     			   error  : '404'});
@@ -96,7 +93,6 @@ router.post('/score/save', function(req, res) {
 	}
 });
 
-//No test
 router.get('/score/load', function(req, res) {
     Score.find(function(err,scores) {
     	if(err)
@@ -105,24 +101,30 @@ router.get('/score/load', function(req, res) {
     });
 });
 
-//No test
-router.get('/score/load/:twitterID', function(req, res) {
-    Score.findById(req.params.twitterID, function(err,scores) {
+router.get('/score/load/:twitter_id', function(req, res) {
+	req_sn = req.params.twitter_id;
+	console.log(req_sn);
+    Score.find({ twitter_id: req.params.twitter_id}, function(err,scores) {
     	if(err)
     		res.send(err);
     	res.json(scores);
     });
 });
 
-//No test
-/*
-router.get('/score/lanking/list/', function(req, res) {
-    Score.find(function(err,scores) {
-    	ret = JSON.parse(scores);
-    	console.log(ret);
+router.get('/score/lanking/list/:music_id', function(req, res) {
+    Score.find({ music_id: req.params.music_id}, function(err,scores) {
+
+    	if(err)
+    		res.send(err);
+    	console.log(scores);
+    	scores.sort(function(a,b){
+    		if(a.score > b.score) return -1;
+    		if(a.score < b.score) return 1;
+    		return 0;
+    	});
+    	res.json(scores);
     });
 });
-*/
 
 app.use('/api', router);
 app.use('/views',express.static('views'));

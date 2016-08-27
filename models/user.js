@@ -2,9 +2,9 @@ var mongoose = require('mongoose');
 var Schema   = mongoose.Schema;
 
 var userSchema = new Schema({
-	twitterID : Number,
-	twitterScreenName : String,
-	Name : String,
+	twitter_id : Number,
+	twitter_screen_name : String,
+	name : String,
 	icon : String
 });
 
