@@ -34,6 +34,10 @@ router.get('/test', function(req, res) {
     res.json({ message: 'TypokeGo api server .' });
 });
 
+router.get('/isuseragoat', function(req, res) {
+    res.json({ user_goat: false });
+});
+
 router.post('/user/save', function(req, res) {
     
 	var user = new User();
@@ -164,11 +168,35 @@ router.get('/music/load', function(req, res) {
     });
 });
 
-router.get('/music/load/:music_id', function(req, res) {
+router.get('/music/search/title/:title', function(req, res) {
+    Music.find({ title: req.params.title }, function(err,music){
+    	if(err)
+    		res.send(err);
+    	res.json(music);
+    });
+});
+
+router.get('/music/search/id/:music_id', function(req, res) {
     Music.find({ music_id: req.params.music_id }, function(err,music){
     	if(err)
-    		req.send(err);
+    		res.send(err);
     	res.json(music);
+    });
+});
+
+router.get('/music/search/keyword/:keyword', function(req, res) {
+    Music.find(function(err, musics){
+    	var sort = [];
+    	if(err)
+    		res.send(err);
+    	musics.forEach(function(val,index){
+    		if(val.title.toLowerCase().indexOf(req.params.keyword.toLowerCase()) != -1){
+    			sort.push(val);
+    			console.log(val.title);
+    		}
+    	});
+
+    	res.json(sort);
     });
 });
 
