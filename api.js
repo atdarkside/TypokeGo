@@ -47,15 +47,11 @@ router.post('/user/information/save', function(req, res) {
 	user.Name = req.body.Name;
 	user.icon = req.body.icon;
 
-	if(){
-
-	} else {
-		user.save(function(err) {
-			if(err)
-				res.send(err);
-			res.json({ message: 'やったぜ。' });
-		});
-	}
+	user.save(function(err) {
+		if(err)
+			res.send(err);
+		res.json({ message: 'やったぜ。' });
+	});
 });
 
 //No test
