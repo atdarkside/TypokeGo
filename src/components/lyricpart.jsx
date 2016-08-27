@@ -1,5 +1,4 @@
 import React from 'react'
-import {findDOMNode} from 'react-dom'
 import {container} from '../utils'
 
 
@@ -8,14 +7,6 @@ class LyricPart extends React.Component {
     return {
       isPlaying: React.PropTypes.bool.isRequired,
       lyric: React.PropTypes.string.isRequired
-    }
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.isPlaying) {
-      const verticallyCenter = window.innerHeight / 2
-      const currentTop = findDOMNode(this).getBoundingClientRect().top
-      window.scrollTo(0, document.body.scrollTop + currentTop - verticallyCenter)
     }
   }
 
