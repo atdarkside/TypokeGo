@@ -20,12 +20,42 @@ function reducer(state, action) {
       })
     case 'UPDATE_TIMER':
       const elapsedTime = state.elapsedTime + timerInterval
-      return Object.assign({}, state, {
-        playingPart: state.playingPart + Number(state.lyrics[state.playingPart + 1].time.total <= state.elapsedTime),
-        elapsedTime
-      })
+      if (state.lyrics[state.playingPart + 1].time.total <= state.elapsedTime) {
+        if (state.lyrics.length <= state.playingPart - 1) {
+          return Object.assign({}, state, {
+            isFinished: true,
+            playingPart: null
+          })
+        }
+
+        return Object.assign({}, state, {
+          playingPart: state.playingPart + 1,
+          elapsedTime,
+          validTypeCount: 0,
+          invalidTypeCount: 0
+        })
+      }
+
+      return Object.assign({}, state, {elapsedTime})
     case 'RESET':
       return initialState
+    case 'TYPE':
+      const playingLine = state.lyrics[state.playingPart].text
+
+      if (playingLine.length <= state.validTypeCount) {
+        return state
+      }
+
+      if (playingLine[state.validTypeCount] === action.key) {
+        return Object.assign({}, state, {
+          validTypeCount: state.validTypeCount + 1,
+          invalidTypeCount: 0
+        })
+      }
+
+      return Object.assign({}, state, {
+        invalidTypeCount: state.invalidTypeCount + 1
+      })
     default:
       return state
   }

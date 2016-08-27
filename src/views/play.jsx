@@ -10,15 +10,24 @@ class Play extends React.Component {
     this.props.fetchLyrics(trackId)
   }
 
+  componentDidMount() {
+    addEventListener('keypress', this.onKeyPress.bind(this))
+  }
+
   componentWillReceiveProps(nextProps) {
     if (this.props.lyrics !== nextProps.lyrics) {
       this.startTimer()
     }
+
+    if (this.props.isFinished) {
+      clearInterval(this.timer)
+    }
   }
 
   componentWillUnmount() {
+    removeEventListener('keypress', this.onKeyPress.bind(this))
     clearInterval(this.timer)
-    this.props.resetTimer()
+    this.props.reset()
   }
 
   render() {  // TODO: 歌詞の取得に失敗した時の表示
@@ -36,6 +45,11 @@ class Play extends React.Component {
 
   startTimer() {
     this.timer = setInterval(this.props.updateTimer.bind(this), timerInterval * 1000)
+  }
+
+  onKeyPress(event) {
+    event.preventDefault()
+    this.props.type(event.key)
   }
 }
 
