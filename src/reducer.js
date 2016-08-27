@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import dummyData from './static/dummy.json'
 import {timerInterval, initialState} from './utils'
 
@@ -20,40 +21,48 @@ function reducer(state, action) {
       })
     case 'UPDATE_TIMER':
       const elapsedTime = state.elapsedTime + timerInterval
-      if (state.lyrics[state.playingPart + 1].time.total <= state.elapsedTime) {
-        if (state.lyrics.length <= state.playingPart - 1) {
+      const nextPart = state.playingPart + 1
+      const nextLine = state.lyrics[nextPart]
+      if (nextLine.time.total <= state.elapsedTime) {
+        if (state.lyrics.length - 1 <= nextPart) {  // if game finished
           return Object.assign({}, state, {
-            isFinished: true,
             playingPart: null
           })
         }
 
-        return Object.assign({}, state, {
-          playingPart: state.playingPart + 1,
+        return Object.assign({}, state, {  // next line
+          playingPart: nextPart,
           elapsedTime,
           validTypeCount: 0,
-          invalidTypeCount: 0
+          invalidTypeCount: 0,
+          score: state.lyrics[state.playingPart] && state.validTypeCount === state.lyrics[state.playingPart].text.length
+            ? state.score + 1
+            : state.score
         })
       }
 
-      return Object.assign({}, state, {elapsedTime})
+      return Object.assign({}, state, {elapsedTime})  // elapsedTime++
     case 'RESET':
       return initialState
     case 'TYPE':
-      const playingLine = state.lyrics[state.playingPart].text
-
-      if (playingLine.length <= state.validTypeCount) {
+      if (!state.lyrics[state.playingPart]) {  // まだ始まってなかったら
         return state
       }
 
-      if (playingLine[state.validTypeCount] === action.key) {
+      const playingLine = state.lyrics[state.playingPart].text
+
+      if (playingLine.length <= state.validTypeCount) {  // 全部打ってたら
+        return state
+      }
+
+      if (playingLine[state.validTypeCount] === action.key) {  // 正しいキー
         return Object.assign({}, state, {
           validTypeCount: state.validTypeCount + 1,
           invalidTypeCount: 0
         })
       }
 
-      return Object.assign({}, state, {
+      return Object.assign({}, state, {  // 間違ったキー
         invalidTypeCount: state.invalidTypeCount + 1
       })
     default:
