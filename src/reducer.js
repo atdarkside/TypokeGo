@@ -24,6 +24,11 @@ function reducer(state, action) {
         playingPart: state.playingPart + Number(state.lyrics[state.playingPart + 1].time.total <= state.elapsedTime),
         elapsedTime
       })
+    case 'RESET_TIMER':
+      return Object.assign({}, state, {
+        elapsedTime: 0,
+        playingPart: -1
+      })
     default:
       return state
   }
