@@ -34,6 +34,10 @@ router.get('/test', function(req, res) {
     res.json({ message: 'TypokeGo api server .' });
 });
 
+router.get('/isuseragoat', function(req, res) {
+    res.json({ user_goat: false });
+});
+
 router.post('/user/save', function(req, res) {
     
 	var user = new User();
@@ -171,6 +175,8 @@ router.get('/music/load/:music_id', function(req, res) {
     	res.json(music);
     });
 });
+
+
 
 app.use('/api', router);
 app.use('/views',express.static('views'));
