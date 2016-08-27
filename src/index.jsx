@@ -7,7 +7,9 @@ import App from './views/app.jsx'
 
 
 const initialState = {
-  something: undefined
+  lyrics: null,
+  elapsedTime: 0,
+  playingPart: -1
 }
 
 render(

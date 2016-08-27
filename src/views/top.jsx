@@ -4,6 +4,7 @@ import {container} from '../utils'
 
 class Top extends React.Component {
   render() {
+    console.log(this.props.lyrics)
     return (
       <section className="start-view">
         <div className="title-box">

@@ -7,6 +7,7 @@ import Play from './play'
 
 class App extends React.Component {
   render() {
+    console.log(this.props)
     return (
       <Router history={browserHistory}>
         <Route path='/play/:trackId' component={Play}/>
