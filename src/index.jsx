@@ -1,19 +1,15 @@
 import React from 'react'
 import {render} from 'react-dom'
-import {Router, Route, Link, browserHistory} from 'react-router'
+import {Router, Route, browserHistory} from 'react-router'
+import Top from './views/top'
+import Play from './views/play'
 
 
-export default class UnderDevelopment extends React.Component {
-  render() {
-    return (
-      <div>ATAMA OKASHI NARUDE</div>
-    )
-  }
-}
-
+console.log((new Play()).render())
 render(
   <Router history={browserHistory}>
-    <Route path="/" component={UnderDevelopment}/>
+    <Route path='/play/:trackId' component={Play}/>
+    <Route path='/' component={Top}/>
   </Router>,
   document.getElementsByTagName('main')[0]
 )
