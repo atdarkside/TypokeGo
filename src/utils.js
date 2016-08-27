@@ -4,7 +4,7 @@ import * as actions from './actions'
 
 
 function mapStateToProps(state) {
-  return {}
+  return state
 }
 
 function mapDispatchToProps(dispatch) {
@@ -17,3 +17,5 @@ export const container = connect(
   mapStateToProps,
   mapDispatchToProps
 )
+
+export const timerInterval = 0.1

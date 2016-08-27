@@ -4,6 +4,7 @@ import {container} from '../utils'
 
 class Top extends React.Component {
   render() {
+    console.log(this.props.lyrics)
     return (
       <div>ATAMA OKASHI NARUDE</div>
     )
