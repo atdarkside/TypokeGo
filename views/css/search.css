@@ -133,3 +133,24 @@ body {
 	text-decoration: none;
 	text-shadow: 1px 1px 1px rgba(255,255,255,.15);
 }
+
+
+/* animation */
+/* close */
+.search-view .res-body,
+.search-view .user-search-form {
+	transform: scale(.75);
+	opacity: 0;
+	transition: all .5s;
+}
+
+
+
+
+/* active */
+.search-view.active .res-body,
+.search-view.active .user-search-form {
+	transform: scale(1);
+	opacity: 1;
+}
+
