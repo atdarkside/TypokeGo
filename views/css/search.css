@@ -1,0 +1,135 @@
+@import 'https://fonts.googleapis.com/css?family=Righteous';
+@import 'https://fonts.googleapis.com/css?family=Chathura:100';
+
+html,
+body {
+	width: 100%;
+	height: 100%;
+	position: relative;
+}
+body {
+	background-image: url("../img/bg.jpg");
+	background-size: cover;
+	background-position: center;
+}
+
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+.search-view {
+	padding: 2em 8em;
+	height: 100%;
+	overflow: scroll;
+}
+
+.search-view .min-title {
+	font-family: 'Righteous', cursive;
+	font-size: 4em;
+	letter-spacing: 7px;
+	text-shadow: 4px 4px 4px rgba(255,255,255,.4);
+	-webkit-mask-image:-webkit-linear-gradient(-90deg, rgba(0,0,0,1), rgba(0,0,0,0.9) 10%, rgba(0,0,0,0.7) 48%, rgba(0,0,0,0.55) 78%, rgba(0,0,0,0.4));
+}
+
+.search-view .user-search-form {
+	position: absolute;
+	top: 2em;
+	right: 10em;
+	padding: 2em .5em;
+}
+.search-view .user-search-form > span {
+	border-radius: 5px;
+	padding: 1em .5em;
+	background: rgba(0,0,0,.35);
+}
+
+.search-view .user-search-form > span i {
+	color: #fff;
+	font-size: 1.5em;
+	padding: .25em;
+	cursor: pointer;
+	position: relative;
+	top:.1em;
+	-webkit-mask-image:-webkit-linear-gradient(-90deg, rgba(0,0,0,8), rgba(0,0,0,0.7) 10%, rgba(0,0,0,0.6) 48%, rgba(0,0,0,0.5) 78%, rgba(0,0,0,0.4));
+}
+.search-view .user-search-form input {
+	letter-spacing: 2px;
+	color: rgba(180,180,180,0.85);
+	background: none;
+	width: 15em;
+	font-size: 1em;
+	padding: .5em;
+	outline: none;
+	border: none;
+}
+.search-view .user-search-form input::-webkit-input-placeholder {
+	color: rgba(180,180,180,0.25);
+}
+.search-view .res-body {
+	padding: 1em 0 0 0;
+	width: 70%;
+	margin: auto;
+}
+
+.search-view .res-body .list-head {
+	background: rgba(0,0,0,0.75);
+	box-shadow: 3px 3px 3px rgba(0,0,0,.3);
+	border-top-right-radius: 5px;
+	border-top-left-radius: 5px;
+	padding: .5em;
+	color: rgba(210,210,210,1);
+	letter-spacing: 2px;
+	text-shadow: 1px 1px 1px rgba(255,255,255,.3);
+}
+.search-view .res-body ul {
+	position: relative;
+	max-height: 75%;
+	overflow: scroll;
+	list-style: none;
+	width: 100%;
+	border-bottom-right-radius: 10px;
+	border-bottom-left-radius: 10px;
+}
+.search-view .res-body ul li {
+	background: rgba(0,0,0,0.5);
+	box-shadow: 3px 3px 3px rgba(0,0,0,.3);
+	padding: .5em;
+	clear: both;
+	overflow: auto;
+}
+
+.search-view .res-body ul li .icon-wra {
+	width: 5em;
+}
+.search-view .res-body ul li .icon-wra img {
+	width: 100%;
+	margin-left: 1.5em;
+	border-radius: 10px;
+	opacity: .65;
+}
+
+.search-view .res-body ul li > div {
+	float: left;
+}
+.search-view .res-body ul li .text-data {
+	padding: 0 4em;
+
+}
+.search-view .res-body ul li .text-data h6 {
+	color: rgba(210,210,210,.9);
+	font-size: 3em;
+	letter-spacing: 4px;
+	padding: .2em 0;
+	line-height: 60%;
+	font-family: 'Chathura', sans-serif;
+	text-shadow: 1px 1px 1px rgba(255,255,255,.3);
+}
+.search-view .res-body ul li .text-data p a {
+	color: rgba(160,160,160,.9);
+	letter-spacing: 1px;
+	padding: 0 1em;
+	text-decoration: none;
+	text-shadow: 1px 1px 1px rgba(255,255,255,.15);
+}
