@@ -214,53 +214,50 @@ router.post('/music/initialization', function(req, res) {
 	m001.icon = "http://s.mxmcdn.net/images-storage/albums/1/1/8/5/8/8/11885811.jpg";
 	m001.youtube_url = "";
 
-	m001.music_id = 002;
-	m001.title = "Omen";
-	m001.artists = "Disclosure feat. Sam Smith";
-	m001.icon = "http://s.mxmcdn.net/images-storage/albums/4/1/5/7/4/0/32047514.jpg";
-	m001.youtube_url = "";
+	m002.music_id = 002;
+	m002.title = "Omen";
+	m002.artists = "Disclosure feat. Sam Smith";
+	m002.icon = "http://s.mxmcdn.net/images-storage/albums/4/1/5/7/4/0/32047514.jpg";
+	m002.youtube_url = "";
 
-	m001.music_id = 003;
-	m001.title = "Get lucky";
-	m001.artists = "Daft Punk";
-	m001.icon = "http://s.mxmcdn.net/images-storage/albums/5/7/5/5/3/4/26435575.jpg";
-	m001.youtube_url = "";
+	m003.music_id = 003;
+	m003.title = "Get lucky";
+	m003.artists = "Daft Punk";
+	m003.icon = "http://s.mxmcdn.net/images-storage/albums/5/7/5/5/3/4/26435575.jpg";
+	m003.youtube_url = "";
 
-	m001.music_id = 004;
-	m001.title = "RapGod";
-	m001.artists = "Eminem";
-	m001.icon = "http://s.mxmcdn.net/images-storage/albums8/1/3/8/1/8/6/31681831.jpg";
-	m001.youtube_url = "";
+	m004.music_id = 004;
+	m004.title = "RapGod";
+	m004.artists = "Eminem";
+	m004.icon = "http://s.mxmcdn.net/images-storage/albums8/1/3/8/1/8/6/31681831.jpg";
+	m004.youtube_url = "";
 
-	m001.music_id = 005;
-	m001.title = "ABCSong";
-	m001.artists = "Barney";
-	m001.icon = "http://s.mxmcdn.net/images-storage/albums/2/1/1/1/0/0/27001112.jpg";
-	m001.youtube_url = "";
+	m005.music_id = 005;
+	m005.title = "ABCSong";
+	m005.artists = "Barney";
+	m005.icon = "http://s.mxmcdn.net/images-storage/albums/2/1/1/1/0/0/27001112.jpg";
+	m005.youtube_url = "";
 
 	m001.save(function(err){
 		if(err)
 			res.send(err);
-	});
-
-	m002.save(function(err){
-		if(err)
-			res.send(err);
-	});
-
-	m003.save(function(err){
-		if(err)
-			res.send(err);
-	});
-
-	m004.save(function(err){
-		if(err)
-			res.send(err);
-	});
-
-	m005.save(function(err){
-		if(err)
-			res.send(err);
+		m002.save(function(err){
+			if(err)
+				res.send(err);
+			m003.save(function(err){
+				if(err)
+					res.send(err);
+				m004.save(function(err){
+					if(err)
+						res.send(err);
+					m005.save(function(err){
+						if(err)
+							res.send(err);
+						res.json({ message: "Nuclear"});
+					});
+				});
+			});
+		});
 	});
 });
 
