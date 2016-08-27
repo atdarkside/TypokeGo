@@ -47,11 +47,15 @@ router.post('/user/information/save', function(req, res) {
 	user.Name = req.body.Name;
 	user.icon = req.body.icon;
 
-	user.save(function(err) {
-		if(err)
-			res.send(err);
-		res.json({ message: 'やったぜ。' });
-	});
+	if(){
+
+	} else {
+		user.save(function(err) {
+			if(err)
+				res.send(err);
+			res.json({ message: 'やったぜ。' });
+		});
+	}
 });
 
 //No test
@@ -60,6 +64,14 @@ router.get('/user/information/load', function(req, res) {
     	if(err)
     		res.send(err);
     	res.json(users);
+    });
+});
+
+router.get('/user/information/load/:twitterID', function(req, res) {
+    User.find(function(err,user) {
+    	if(err)
+    		res.send(err);
+    	res.json(user);
     });
 });
 
