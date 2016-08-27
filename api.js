@@ -32,6 +32,9 @@ router.get('/', function(req, res) {
     res.json({ message: 'TypokeGo api server .' });
 });
 
+router.get('/unko', function(req, res) {
+    res.json({ message: 'TypokeGo api server .' });
+});
 
 
 app.use('/api', router);
