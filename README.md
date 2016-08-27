@@ -1,3 +1,3 @@
-#TypokeGo
+# TypokéGo
 * Express
 * React
