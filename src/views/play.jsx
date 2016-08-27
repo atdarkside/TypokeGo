@@ -10,6 +10,10 @@ class Play extends React.Component {
     this.props.fetchLyrics(trackId)
   }
 
+  componentDidMount() {
+    addEventListener('keypress', this.onKeyPress.bind(this))
+  }
+
   componentWillReceiveProps(nextProps) {
     if (this.props.lyrics !== nextProps.lyrics) {
       this.startTimer()
@@ -21,6 +25,7 @@ class Play extends React.Component {
   }
 
   componentWillUnmount() {
+    removeEventListener('keypress', this.onKeyPress.bind(this))
     clearInterval(this.timer)
     this.props.reset()
   }
@@ -40,6 +45,11 @@ class Play extends React.Component {
 
   startTimer() {
     this.timer = setInterval(this.props.updateTimer.bind(this), timerInterval * 1000)
+  }
+
+  onKeyPress(event) {
+    event.preventDefault()
+    this.props.type(event.key)
   }
 }
 

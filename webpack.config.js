@@ -11,6 +11,11 @@ module.exports = {
         test: /.json$/,
         loader: 'json',
         exclude: /node_modules/
+      },
+      {
+        test: /.css$/,
+        loaders: ['style', 'css'],
+        exclude: /node_modules/
       }
     ]
   },

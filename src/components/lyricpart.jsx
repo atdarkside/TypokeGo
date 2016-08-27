@@ -10,14 +10,11 @@ class LyricPart extends React.Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (this.props.isPlaying === false && nextProps.isPlaying === true) {
-      addEventListener('keypress', event => this.props.type(event.key))
-    }
-  }
-
   render() {
     const decideClass = i => {
+      if (!this.props.isPlaying) {
+        return ''
+      }
       if (i >= this.props.validTypeCount && i < this.props.validTypeCount + this.props.invalidTypeCount) {
         return 'invalid'
       }
@@ -25,6 +22,7 @@ class LyricPart extends React.Component {
         return 'valid'
       }
     }
+
     return (
       <p className={this.props.isPlaying ? 'playing' : ''}>
         {this.props.lyric.split('').map((char, i) => <span key={i} className={decideClass(i)}>{char}</span>)}

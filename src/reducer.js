@@ -30,7 +30,9 @@ function reducer(state, action) {
 
         return Object.assign({}, state, {
           playingPart: state.playingPart + 1,
-          elapsedTime
+          elapsedTime,
+          validTypeCount: 0,
+          invalidTypeCount: 0
         })
       }
 

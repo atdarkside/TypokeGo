@@ -5,7 +5,7 @@ import * as actions from './actions'
 
 
 export const container = connect(
-  state => Object.assign({}, state, {elapsedTime: null}),
+  state => _.omit(state, 'elapsedTime'),
   dispatch => bindActionCreators(actions, dispatch)
 )
 export const timerInterval = 0.1
