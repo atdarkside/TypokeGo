@@ -29,19 +29,15 @@ router.use(function(req, res, next) {
 //                                //
 // ------------------------------ //
 
-
-router.get('/', function(req, res) {
-    res.json({ message: 'TypokeGo api server .' });
-});
 router.get('/test', function(req, res) {
     res.json({ message: 'TypokeGo api server .' });
 });
-
 
 //No test
 router.post('/user/information/save', function(req, res) {
     
 	var user = new User();
+	console.log(req.body);
 	user.twitterID = req.body.twitterID;
 	user.twitterScreenName = req.body.twitterScreenName;
 	user.Name = req.body.Name;
@@ -69,8 +65,9 @@ router.get('/user/information/load', function(req, res) {
     });
 });
 
+//No test
 router.get('/user/information/load/:twitterID', function(req, res) {
-    User.find(function(err,user) {
+    User.findById(req.params.twitterID ,function(err,user) {
     	if(err)
     		res.send(err);
     	res.json(users);
@@ -81,12 +78,13 @@ router.get('/user/information/load/:twitterID', function(req, res) {
 router.post('/score/save', function(req, res) {
     
     var score = new Score();
+    console.log(req.body);
     score.twitterID = req.body.twitterID;
     score.musicID = req.body.musicID;
     score.score = req.body.score;
 
-    if(!score.twitterID || score.musicID ||
-       !score.score){
+    if(score.twitterID == null || score.musicID == null ||
+       score.score == null){
     	res.json({ message: 'No parameters', 
     			   error  : '404'});
     } else {
@@ -107,13 +105,24 @@ router.get('/score/load', function(req, res) {
     });
 });
 
-router.get('/score/load/:musicID', function(req, res) {
-    Score.findById(req.params.musicID, function(err,scores) {
+//No test
+router.get('/score/load/:twitterID', function(req, res) {
+    Score.findById(req.params.twitterID, function(err,scores) {
     	if(err)
     		res.send(err);
     	res.json(scores);
     });
 });
+
+//No test
+/*
+router.get('/score/lanking/list/', function(req, res) {
+    Score.find(function(err,scores) {
+    	ret = JSON.parse(scores);
+    	console.log(ret);
+    });
+});
+*/
 
 app.use('/api', router);
 app.use('/views',express.static('views'));
