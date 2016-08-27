@@ -111,15 +111,20 @@ router.get('/score/load/:twitter_id', function(req, res) {
     });
 });
 
-//No test
-/*
-router.get('/score/lanking/list/', function(req, res) {
-    Score.find(function(err,scores) {
-    	ret = JSON.parse(scores);
-    	console.log(ret);
+router.get('/score/lanking/list/:music_id', function(req, res) {
+    Score.find({ music_id: req.params.music_id}, function(err,scores) {
+
+    	if(err)
+    		res.send(err);
+    	console.log(scores);
+    	scores.sort(function(a,b){
+    		if(a.score > b.score) return -1;
+    		if(a.score < b.score) return 1;
+    		return 0;
+    	});
+    	res.json(scores);
     });
 });
-*/
 
 app.use('/api', router);
 app.use('/views',express.static('views'));
