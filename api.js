@@ -7,6 +7,7 @@ var mongoose   = require('mongoose');
 
 //mongoose.connect('mongodb://localhost/TypokeGo');
 
+var User = require('./models/user');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -16,7 +17,7 @@ var port = process.env.PORT || 3333;
 var router = express.Router();
 
 router.use(function(req, res, next) {
-    console.log('access -> ' + req.url);
+    //console.log('access -> ' + req.url);
     next();
 });
 
@@ -31,11 +32,29 @@ router.use(function(req, res, next) {
 router.get('/', function(req, res) {
     res.json({ message: 'TypokeGo api server .' });
 });
-
-router.get('/unko', function(req, res) {
+router.get('/test', function(req, res) {
     res.json({ message: 'TypokeGo api server .' });
 });
 
+router.get('/', function(req, res) {
+    res.json({ message: 'TypokeGo api server .' });
+});
+
+//No test
+router.post('/user/information', function(req, res) {
+    
+	var user = new User();
+	user.twitterID = req.body.twitterID;
+	user.twitterScreenName = req.body.twitterScreenName;
+	user.Name = req.body.Name;
+	user.icon = req.body.icon;
+
+	user.save(function(err) {
+		if(err)
+			res.send(err);
+		res.json({ message: 'やったぜ。' });
+	});
+});
 
 app.use('/api', router);
 app.use('/views',express.static('views'));
