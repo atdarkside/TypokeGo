@@ -1,5 +1,6 @@
 import _ from 'lodash'
 import React from 'react'
+import {browserHistory} from 'react-router'
 import {container, timerInterval} from '../utils'
 import LyricPart from '../components/lyricpart'
 
@@ -19,8 +20,10 @@ class Play extends React.Component {
       this.startTimer()
     }
 
-    if (this.props.isFinished) {
+    if (this.props.playingPart === null) {
       clearInterval(this.timer)
+      // TODO: Wait for movie finish
+      browserHistory.push(`/result/${this.props.score}`)
     }
   }
 
