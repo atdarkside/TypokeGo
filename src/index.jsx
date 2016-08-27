@@ -8,6 +8,8 @@ import {initialState} from './utils'
 // import './static/style.css'
 import Top from './views/top'
 import Play from './views/play'
+import User from './views/user'
+import SearchUser from './views/search-user.js'
 
 
 const routing = [
@@ -18,6 +20,14 @@ const routing = [
   {
     path: '/play/:trackId',
     component: Play
+  },
+  {
+    path: '/user/',
+    component: User
+  },
+  {
+    path: '/search/user',
+    component: SearchUser
   }
 ]
 
