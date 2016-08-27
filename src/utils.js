@@ -4,7 +4,10 @@ import {connect} from 'react-redux'
 import * as actions from './actions'
 
 
-export const container = connect(_.identity, dispatch => bindActionCreators(actions, dispatch))
+export const container = connect(
+  state => Object.assign({}, state, {elapsedTime: null}),
+  dispatch => bindActionCreators(actions, dispatch)
+)
 export const timerInterval = 0.1
 export const initialState = {
   lyrics: null,
