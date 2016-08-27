@@ -123,23 +123,37 @@ router.get('/score/lanking/list/:music_id', function(req, res) {
 
 router.post('/music/save', function(req, res) {
 
+	var ret = false;
     var music = Music();
     music.music_id = req.body.music_id;
     music.title = req.body.title;
     music.artists = req.body.artists;
     music.icon = req.body.icon;
 
-    if(music.music_id == null || music.title == null ||
-       music.artists == null  || music.icon == null) {
-    	res.json({ message: 'No parameters',
-    			   error: '404'});
-    } else {
-    	music.save(function(err) {
-    		if(err)
-    			res.send(err);
-    		res.json({ message: '今日も一日頑張るぞい！'});
-    	});
-    }
+	Music.find({ music_id:music.music_id }, function(err,_music){
+    	if(err)
+    		res.send(err);
+    	if (Object.keys(_music).length > 0)
+    		ret = true;
+    	console.log(Object.keys(_music).length);
+    	console.log("ret:" + ret);
+    	if (ret == true){
+	    	res.send({ message: "There is the same ID" });
+	    	console.log("true");
+	    } else if(ret == false){
+		    if(music.music_id == null || music.title == null ||
+		       music.artists == null  || music.icon == null) {
+		    	res.json({ message: 'No parameters',
+		    			   error: '404'});
+		    } else {
+		    	music.save(function(err) {
+		    		if(err)
+		    			res.send(err);
+		    		res.json({ message: '今日も一日頑張るぞい！'});
+		    	});
+		    }
+		}
+    });
 });
 
 router.get('/music/load', function(req, res) {
