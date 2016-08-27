@@ -3,6 +3,31 @@ import {container} from '../utils'
 
 
 class Top extends React.Component {
+  componentDidMount(){
+
+    fetch("http://localhost:3333/api/user/save",
+        {method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+          body: JSON.stringify({
+            twitter_id: "0410",
+            twitter_screen_name: '_Ghostrick_',
+            name: 'nagimaru',
+            icon: 'Google.com'
+          })
+        }
+      ).
+      then((res) => {
+        const json = res.json();
+        console.log(json);
+        return json;
+      }).then(json => {
+        console.log(json);
+        return json;
+    });
+  }
   render() {
     console.log(this.props.lyrics)
     return (

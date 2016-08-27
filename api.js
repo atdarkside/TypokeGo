@@ -5,6 +5,9 @@ var app        = express();
 var bodyParser = require('body-parser');
 var mongoose   = require('mongoose');
 
+var corser = require("corser");
+app.use(corser.create());
+
 mongoose.connect('mongodb://localhost/TypokeGo');
 
 var User = require('./models/user');
@@ -39,6 +42,7 @@ router.get('/isuseragoat', function(req, res) {
 });
 
 router.post('/user/save', function(req, res) {
+    console.log(req.body);
     
 	var user = new User();
 	user.twitter_id = req.body.twitter_id;
