@@ -17,6 +17,11 @@ class Top extends React.Component {
             <span className="candidate">candidate 3</span>
             <i className="ion-search"></i>
           </span>
+          <div className="action-link">
+            <div><i className="ion-log-in"></i></div>
+            <div><i className="ion-trophy"></i></div>
+            <div><i className="ion-person"></i></div>
+          </div>
         </div>
       </section>
     )
