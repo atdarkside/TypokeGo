@@ -1,7 +1,8 @@
 import React from 'react'
+import {container} from '../utils'
 
 
-export default class Top extends React.Component {
+class Top extends React.Component {
   render() {
     return (
       <section className="start-view">
@@ -17,3 +18,5 @@ export default class Top extends React.Component {
     )
   }
 }
+
+export default container(Top)
