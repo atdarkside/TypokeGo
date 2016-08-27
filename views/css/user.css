@@ -116,3 +116,46 @@ body {
 	-webkit-mask-image:-webkit-linear-gradient(-90deg, rgba(255,255,255,.8), rgba(255,255,255,0.7) 10%, rgba(255,255,255,0.6) 48%, rgba(255,255,255,0.5) 78%, rgba(255,255,255,0.1));
 }
 
+
+/* animation */
+/* close */
+.user-view .action-link > div {
+	transform: scale(.35);
+	opacity: 0;
+	transition: all .5s;
+}
+.user-view .user-info .icon-box img {
+	transform: translateY(1.5em);
+	opacity: 0;
+	transition: all .75s;
+	transition-delay: .25s;
+}
+.user-view .user-info .user-text {
+	transform: translateY(2em);
+	opacity: 0;
+	transition: all .75s;
+}
+.user-view .user-info .user-text span {
+	position: relative;
+	top: .1em;
+	opacity: 0;
+	transition: all .75s;
+	transition-delay: .5s;
+}
+
+/* active */
+.user-view.active .action-link > div {
+	transform: scale(1);
+	opacity: 1;
+}
+.user-view.active .user-info .user-text,
+.user-view.active .user-info .icon-box img {
+	transform: translateY(0);
+	opacity: 1;
+}
+.user-view .user-info .user-text span.active {
+	top :0;
+	opacity: 1;
+}
+
+
