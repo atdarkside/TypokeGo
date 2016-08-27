@@ -202,6 +202,7 @@ router.get('/music/search/keyword/:keyword', function(req, res) {
 
 app.use('/api', router);
 app.use('/views',express.static('views'));
+app.use('/Animation',express.static('data/AnimationTest'));
 
 
 app.listen(port);
