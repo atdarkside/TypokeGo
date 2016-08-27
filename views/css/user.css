@@ -47,7 +47,7 @@ body {
 }
 .user-view .user-info .icon-box img {
 	width: 100%;
-	border-radius: 4px;
+	border-radius: 10px;
 	box-shadow: 7px 7px 7px rgba(255,255,255,.15);
 }
 .user-view .user-info .user-text {
@@ -89,5 +89,30 @@ body {
 	font-size: 2em;
 	color: rgba(210,210,210,0.6);
 }
-
+.action-link {
+	position: absolute;
+	bottom: 1em;
+	right: 5em;
+	padding: 1.5em 3em;
+}
+.action-link > div {
+	float: left;
+	width: 5em;
+	height: 5em;
+	background: linear-gradient(rgba(0,0,0,.8), rgba(0,0,0,.2));
+	box-shadow: 4px 4px 4px rgba(255,255,255,.1);
+	border-radius: 20px;
+	margin: 0 .75em;
+	text-align: center;
+	cursor: pointer;
+} 
+.action-link > div > i {
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+	display: block;
+	color: rgba(210,210,210,0.8);
+	font-size: 2.5em;
+	-webkit-mask-image:-webkit-linear-gradient(-90deg, rgba(255,255,255,.8), rgba(255,255,255,0.7) 10%, rgba(255,255,255,0.6) 48%, rgba(255,255,255,0.5) 78%, rgba(255,255,255,0.1));
+}
 

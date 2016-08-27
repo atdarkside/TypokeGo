@@ -124,7 +124,7 @@ body {
 	position: absolute;
 	bottom: 1em;
 	right: 5em;
-	padding: 3em;
+	padding: 1.5em 3em;
 }
 .action-link > div {
 	float: left;
