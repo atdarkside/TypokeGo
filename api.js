@@ -47,11 +47,17 @@ router.post('/user/information/save', function(req, res) {
 	user.Name = req.body.Name;
 	user.icon = req.body.icon;
 
-	user.save(function(err) {
-		if(err)
-			res.send(err);
-		res.json({ message: 'やったぜ。' });
-	});
+	if(!user.twitterID || !user.twitterScreenName ||
+	   !user.Name      || !user.icon){ 
+		res.json({ message: 'No parameters', 
+				   error:   '404'});
+	} else {
+		user.save(function(err) {
+			if(err)
+				res.send(err);
+			res.json({ message: 'やったぜ。' });
+		});
+	}
 });
 
 //No test
@@ -67,7 +73,7 @@ router.get('/user/information/load/:twitterID', function(req, res) {
     User.find(function(err,user) {
     	if(err)
     		res.send(err);
-    	res.json(user);
+    	res.json(users);
     });
 });
 
@@ -79,11 +85,17 @@ router.post('/score/save', function(req, res) {
     score.musicID = req.body.musicID;
     score.score = req.body.score;
 
-    score.save(function(err) {
-    	if(err)
-    		res.send(err);
-    	res.json({ message: '通報すると金になるんか？'});
-    });
+    if(!score.twitterID || score.musicID ||
+       !score.score){
+    	res.json({ message: 'No parameters', 
+    			   error  : '404'});
+    } else {
+		score.save(function(err) {
+			if(err)
+				res.send(err);
+			res.json({ message: '通報すると金になるんか？'});
+		});
+	}
 });
 
 //No test
