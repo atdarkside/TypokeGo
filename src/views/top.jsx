@@ -1,33 +1,16 @@
+import _ from 'lodash'
 import React from 'react'
 import {container} from '../utils'
 
 
 class Top extends React.Component {
-  componentDidMount(){
-
-    fetch("http://localhost:3333/api/user/save",
-        {method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-        },
-          body: JSON.stringify({
-            twitter_id: "0410",
-            twitter_screen_name: '_Ghostrick_',
-            name: 'nagimaru',
-            icon: 'Google.com'
-          })
-        }
-      ).
-      then((res) => {
-        const json = res.json();
-        console.log(json);
-        return json;
-      }).then(json => {
-        console.log(json);
-        return json;
-    });
+  constructor() {
+    super()
+    this.state = {
+      songs: []
+    }
   }
+
   render() {
     return (
       <section className="start-view">
@@ -35,10 +18,8 @@ class Top extends React.Component {
           <h1>Typoké<span className="padd"></span>Go</h1>
           <p>Type your beats.</p>
           <span className="input-wra">
-            <input placeholder="musicname"></input>
-            <span className="candidate">candidate 1</span>
-            <span className="candidate">candidate 2</span>
-            <span className="candidate">candidate 3</span>
+            <input placeholder="musicname" onKeyUp={this.handleKey.bind(this)}></input>
+            {this.state.songs.map((song, i) => <span key={i} className="candidate">{song.title}</span>)}
             <i className="ion-search"></i>
           </span>
         </div>
@@ -49,6 +30,16 @@ class Top extends React.Component {
         </div>
       </section>
     )
+  }
+
+  handleKey(event) {
+    if (event.target.value === '') {
+      return
+    }
+
+    fetch(`http://localhost:3333/api/music/search/keyword/${event.target.value}`, {mode: 'cors'})
+      .then(_.method('json'))
+      .then(songs => this.setState({songs}))
   }
 }
 
