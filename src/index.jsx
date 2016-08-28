@@ -32,7 +32,7 @@ const routing = [
     component: SearchUser
   },
   {
-    path: '/result',
+    path: '/result/:',
     component: Result
   }
 ]

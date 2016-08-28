@@ -2,6 +2,10 @@ var express    = require('express');
 var app        = express();
 var bodyParser = require('body-parser');
 var mongoose   = require('mongoose');
+var request = require('superagent');
+var Twitter = require('twitter');
+var cookieParser = require('cookie-parser')
+
 
 var corser = require("corser");
 app.use(corser.create());
@@ -14,6 +18,7 @@ var Music = require('./models/music');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
 
 var port = process.env.PORT || 3333;
 
@@ -33,6 +38,41 @@ router.use(function(req, res, next) {
 
 router.get('/test', function(req, res) {
 	res.json({ message: "神 is God."});
+});
+
+// user 認証
+
+router.post('/twitter/login',function(req,res){
+	request
+  		.post("http://nagix2.webcrow.jp/api.php")
+  		.type('form')
+  		.send({id: req.body.id, pw: req.body.pw})
+  		.end(function(err, response){
+  			if(err)
+  				res.send(err);
+    		//res.json(response.text);
+    		token = JSON.parse(response.text);
+    		var Twiclient = new Twitter({
+  				consumer_key: token.ck,
+  				consumer_secret: token.cs,
+  				access_token_key: token.at,
+  				access_token_secret: token.as
+			});
+
+			var params = {};
+			Twiclient.get('account/verify_credentials', params, function(error, response) {
+  				if (!error) {
+    				console.log(response.screen_name);
+    				var cookieData = new Object();
+    				cookieData.screen_name = response.screen_name;
+    				cookieData.id = response.id;
+    				cookieData.icon = response.profile_image_url;
+    				cookieData.token = token;
+    				res.json(cookieData);
+  				}
+			});
+  		});
+
 });
 
 router.get('/isuseragoat', function(req, res) {
