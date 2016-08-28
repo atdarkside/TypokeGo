@@ -6,7 +6,8 @@ class LyricPart extends React.Component {
   static get propTypes() {
     return {
       isPlaying: React.PropTypes.bool.isRequired,
-      lyric: React.PropTypes.string.isRequired
+      lyric: React.PropTypes.string.isRequired,
+      hasSucceed: React.PropTypes.bool
     }
   }
 
@@ -23,8 +24,18 @@ class LyricPart extends React.Component {
       }
     }
 
+    console.log(this.props.judges)
+    let cls = ''
+    if (this.props.isPlaying) {
+      cls = 'playing'
+    } else if (this.props.hasSucceed) {
+      cls = 'success'
+    } else if (this.props.hasSucceed === false) {
+      cls = 'missing'
+    }
+
     return (
-      <p className={this.props.isPlaying ? 'playing' : ''}>
+      <p className={cls}>
         {this.props.lyric.split('').map((char, i) => <span key={i} className={decideClass(i)}>{char}</span>)}
       </p>
     )

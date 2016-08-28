@@ -38,7 +38,10 @@ class Play extends React.Component {
       const lyrics = this.props.lyrics.map(_.property('text'))
       return (
         <section className="play">
-          {lyrics.map((lyric, i) => <LyricPart key={i} lyric={lyric} isPlaying={this.props.playingPart === i}/>)}
+          {lyrics.map((lyric, i) => <LyricPart key={i}
+                                               lyric={lyric}
+                                               isPlaying={this.props.playingPart === i}
+                                               hasSucceed={this.props.judges[i]}/>)}
         </section>
       )
     } else {

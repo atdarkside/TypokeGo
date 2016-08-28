@@ -30,14 +30,14 @@ function reducer(state, action) {
           })
         }
 
+        const hasSucceed = state.playingPart === state.judges.length - 1
         return Object.assign({}, state, {  // next line
           playingPart: nextPart,
           elapsedTime,
           validTypeCount: 0,
           invalidTypeCount: 0,
-          score: state.lyrics[state.playingPart] && state.validTypeCount === state.lyrics[state.playingPart].text.length
-            ? state.score + 1
-            : state.score
+          score: state.score + Number(state.hasSucceed),
+          judges: state.judges.concat(hasSucceed ? [] : [false])
         })
       }
 
@@ -56,9 +56,12 @@ function reducer(state, action) {
       }
 
       if (playingLine[state.validTypeCount] === action.key) {  // 正しいキー
+        const validTypeCount = state.validTypeCount + 1
+
         return Object.assign({}, state, {
-          validTypeCount: state.validTypeCount + 1,
-          invalidTypeCount: 0
+          invalidTypeCount: 0,
+          judges: state.judges.concat(validTypeCount === playingLine.length ? [true] : []),
+          validTypeCount
         })
       }
 
