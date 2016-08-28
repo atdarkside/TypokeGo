@@ -1,24 +1,12 @@
 import _ from 'lodash'
-import dummyData from './static/dummy.json'
 import {timerInterval, initialState} from './utils'
 
 
 function reducer(state, action) {
   switch (action.type) {
-    case 'FETCH_LYRICS':
-      const timestamps = dummyData
-        .message
-        .body
-        .macro_calls['track.subtitles.get']
-        .message
-        .body
-        .subtitle_list[0]
-        .subtitle
-        .subtitle_body
-
-      return Object.assign({}, state, {
-        lyrics: JSON.parse(timestamps)
-      })
+    case 'SET_TRACK':
+      const lyrics = require(`./static/json/${action.trackId}.json`)
+      return Object.assign({}, state, {lyrics})
     case 'UPDATE_TIMER':
       const elapsedTime = state.elapsedTime + timerInterval
       const nextPart = state.playingPart + 1
@@ -36,7 +24,6 @@ function reducer(state, action) {
           elapsedTime,
           validTypeCount: 0,
           invalidTypeCount: 0,
-          score: state.score + Number(state.hasSucceed),
           judges: state.judges.concat(hasSucceed ? [] : [false])
         })
       }

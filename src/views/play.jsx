@@ -1,14 +1,29 @@
 import _ from 'lodash'
 import React from 'react'
 import {browserHistory} from 'react-router'
+import YouTube from 'react-youtube'
 import {container, timerInterval} from '../utils'
 import LyricPart from '../components/lyricpart'
 
 
 class Play extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      videoId: null,
+      delay: 0
+    }
+  }
+
   componentWillMount() {
-    const trackId = 0
-    this.props.fetchLyrics(trackId)
+    this.props.setTrack(this.props.params.trackId)
+
+    fetch(`http://localhost:3333/api/music/search/id/${this.props.params.trackId}`, {mode: 'cors'})
+      .then(_.method('json'))
+      .then(songs => this.setState({
+        videoId: songs[0].youtube_url.replace('https://youtu.be/', ''),
+        delay: songs[0].deray
+      }))
   }
 
   componentDidMount() {
@@ -18,12 +33,13 @@ class Play extends React.Component {
   componentWillReceiveProps(nextProps) {
     if (this.props.lyrics !== nextProps.lyrics) {
       this.startTimer()
+      console.log(nextProps.lyrics)
     }
 
     if (this.props.playingPart === null) {
       clearInterval(this.timer)
       // TODO: Wait for movie finish
-      browserHistory.push(`/result/${this.props.score}`)
+      browserHistory.push(`/result/${this.props.params.trackId}/${this.props.judges.filter(_.identity).length * 1000}`)
     }
   }
 
@@ -42,6 +58,7 @@ class Play extends React.Component {
                                                lyric={lyric}
                                                isPlaying={this.props.playingPart === i}
                                                hasSucceed={this.props.judges[i]}/>)}
+          <YouTube videoId={this.state.videoId} opts={{playerVars: {autoplay: 1, start: this.state.delay}}}/>
         </section>
       )
     } else {
