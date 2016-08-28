@@ -1,15 +1,29 @@
 import _ from 'lodash'
 import React from 'react'
 import {browserHistory} from 'react-router'
+import YouTube from 'react-youtube'
 import {container, timerInterval} from '../utils'
 import LyricPart from '../components/lyricpart'
 
 
 class Play extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      videoId: null,
+      delay: 0
+    }
+  }
+
   componentWillMount() {
-    fetch(`http://localhost:3333/api/music/json/load/${this.props.params.trackId}`, {mode: 'cors'})
+    this.props.setTrack(this.props.params.trackId)
+
+    fetch(`http://localhost:3333/api/music/search/id/${this.props.params.trackId}`, {mode: 'cors'})
       .then(_.method('json'))
-      .then(this.props.setLyrics)
+      .then(songs => this.setState({
+        videoId: songs[0].youtube_url.replace('https://youtu.be/', ''),
+        delay: songs[0].deray
+      }))
   }
 
   componentDidMount() {
@@ -44,6 +58,7 @@ class Play extends React.Component {
                                                lyric={lyric}
                                                isPlaying={this.props.playingPart === i}
                                                hasSucceed={this.props.judges[i]}/>)}
+          <YouTube videoId={this.state.videoId} opts={{playerVars: {autoplay: 1, start: this.state.delay}}}/>
         </section>
       )
     } else {

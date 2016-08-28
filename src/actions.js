@@ -1,7 +1,7 @@
-export function setLyrics(lyrics) {
+export function setTrack(trackId) {
   return {
-    type: 'SET_LYRICS',
-    lyrics
+    type: 'SET_TRACK',
+    trackId
   }
 }
 

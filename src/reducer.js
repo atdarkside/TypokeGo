@@ -4,20 +4,9 @@ import {timerInterval, initialState} from './utils'
 
 function reducer(state, action) {
   switch (action.type) {
-    case 'SET_LYRICS':
-      const lyrics = action.lyrics
-        .message
-        .body
-        .macro_calls['track.subtitles.get']
-        .message
-        .body
-        .subtitle_list[0]
-        .subtitle
-        .subtitle_body
-
-      return Object.assign({}, state, {
-        lyrics: JSON.parse(lyrics)
-      })
+    case 'SET_TRACK':
+      const lyrics = require(`./static/json/${action.trackId}.json`)
+      return Object.assign({}, state, {lyrics})
     case 'UPDATE_TIMER':
       const elapsedTime = state.elapsedTime + timerInterval
       const nextPart = state.playingPart + 1
