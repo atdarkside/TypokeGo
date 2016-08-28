@@ -467,6 +467,181 @@ body {
 	opacity: 1;
 }
 
+.result-view {
+	padding: 2em 8em;
+}
+
+.result-view .min-title {
+	font-family: 'Righteous', cursive;
+	font-size: 4em;
+	letter-spacing: 7px;
+	text-shadow: 4px 4px 4px rgba(255,255,255,.4);
+	-webkit-mask-image:-webkit-linear-gradient(-90deg, rgba(0,0,0,1), rgba(0,0,0,0.9) 10%, rgba(0,0,0,0.7) 48%, rgba(0,0,0,0.55) 78%, rgba(0,0,0,0.4));
+}
+
+.result-view .all-wra {
+	padding: 2em 0;
+	width: 100%;
+}
+.result-view .all-wra .score-wra,
+.result-view .all-wra .ranking-wra {
+	width: 50%;
+}
+.result-view .all-wra .score-wra {
+	float: left;
+}
+.result-view .all-wra .ranking-wra {
+	float: right;
+}
+
+
+.result-view .all-wra .score-wra .score-box {
+	position: relative;
+	padding: 1em;
+	background: rgba(0,0,0,.45);
+	box-shadow: 8px 8px 8px rgba(255,255,255,.1);
+}
+.result-view .all-wra .score-wra .score-box .guid-top {
+	letter-spacing: 2px;
+	font-size: 1.25em;
+	color: rgba(210,210,210,1);
+	text-shadow: 2px 2px 2px rgba(255,255,255,.2);
+	padding: .1em 0em;
+}
+
+.result-view .all-wra .score-wra .score-box .score-text {
+	font-size: 3.5em;
+	padding: .5em;
+	text-align: center;
+	font-family: 'Righteous', cursive;
+	letter-spacing: 5px;
+	color: #fff;
+	text-shadow: 4px 4px 4px rgba(255,255,255,.4);
+	-webkit-mask-image:-webkit-linear-gradient(-90deg, rgba(255,255,255,1), rgba(255,255,255,0.9) 10%, rgba(255,255,255,0.7) 48%, rgba(255,255,255,0.55) 78%, rgba(255,255,255,0.4));
+}
+.result-view .all-wra .score-wra .score-box > i {
+	transform: rotate(30deg);
+	position: absolute;
+	top:0;
+	right:0;
+	font-size: 5em;
+	color :#fff;
+	opacity: 0.5;
+	text-shadow: 2px 2px 2px rgba(0,0,0,0.75);
+	-webkit-mask-image:-webkit-linear-gradient(-90deg, rgba(255,255,255,.8), rgba(255,255,255,0.7) 10%, rgba(255,255,255,0.6) 48%, rgba(255,255,255,0.5) 78%, rgba(255,255,255,0.1));
+}
+
+.result-view .all-wra .ranking-wra {
+	padding: 1em;
+	width: 40%;
+}
+.result-view .all-wra .ranking-wra ul {
+	list-style: none;
+}
+.result-view .all-wra .ranking-wra ul li {
+	margin: .75em 0;
+	position: relative;
+	padding: .75em;
+	background: rgba(0,0,0,.45);
+	box-shadow: 8px 8px 8px rgba(255,255,255,.1);
+	text-align: right;
+}
+.result-view .all-wra .ranking-wra ul li .num {
+	transform: rotate(5deg);
+	font-family: 'Righteous', cursive;
+	padding: 0 .15em;
+	line-height: 90%;
+	font-size: 7em;
+	letter-spacing: 7px;
+	text-shadow: 7px 7px 7px rgba(255,255,255,.4);
+	-webkit-mask-image:-webkit-linear-gradient(-90deg, rgba(0,0,0,1), rgba(0,0,0,0.9) 10%, rgba(0,0,0,0.7) 48%, rgba(0,0,0,0.55) 78%, rgba(0,0,0,0.4));
+	position: absolute;
+	bottom: 0;
+	left: 0;
+}
+.result-view .all-wra .ranking-wra ul li .score {
+	font-size: 2em;
+	color: rgba(210,210,210,1);
+	text-shadow: 2px 2px 2px rgba(255,255,255,.2);
+	font-family: 'Righteous', cursive;
+	letter-spacing: 3px;
+
+}
+.result-view .all-wra .ranking-wra ul li .score-user {
+	font-size: 1.05em;
+	color: rgba(210,210,210,1);
+	text-shadow: 2px 2px 2px rgba(255,255,255,.2);
+	letter-spacing: 2px;
+
+}
+
+.result-view .action-link {
+	position: absolute;
+	bottom: 7em;
+	left: 5em;
+	padding: 1.5em 3em;
+}
+.action-link > div {
+	float: left;
+	width: 5em;
+	height: 5em;
+	background: linear-gradient(rgba(0,0,0,.8), rgba(0,0,0,.2));
+	box-shadow: 4px 4px 4px rgba(255,255,255,.1);
+	border-radius: 20px;
+	margin: 0 .75em;
+	text-align: center;
+	cursor: pointer;
+} 
+.action-link > div > i {
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+	display: block;
+	color: rgba(210,210,210,0.8);
+	font-size: 2.5em;
+	-webkit-mask-image:-webkit-linear-gradient(-90deg, rgba(255,255,255,.8), rgba(255,255,255,0.7) 10%, rgba(255,255,255,0.6) 48%, rgba(255,255,255,0.5) 78%, rgba(255,255,255,0.1));
+}
+
+
+
+/* animation */
+/* close */
+.result-view .action-link > div {
+	transform: scale(.35);
+	opacity: 0;
+	transition: all .5s;
+}
+.result-view .ranking-wra li {
+	transform: scale(0);
+	opacity: 0;
+	transition :all .5s;
+}
+.result-view .ranking-wra li:nth-child(2){
+	transition-delay: .2s;
+}
+.result-view .ranking-wra li:nth-child(3){
+	transition-delay: .4s;
+}
+.result-view .score-box {
+	transform: translateY(2.5em);
+	opacity: 0;
+	transition: all .4s;
+}
+
+/* active */
+.result-view.active .action-link > div {
+	transform: scale(1);
+	opacity: 1;
+}
+.result-view.active .ranking-wra li {
+	transform: scale(1);
+	opacity: 1;
+}
+.result-view.active .score-box {
+	transform: translateY(0);
+	opacity: 1;
+}
+
 
 
 

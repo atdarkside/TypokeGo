@@ -9,6 +9,8 @@ import {initialState} from './utils'
 import Top from './views/top'
 import Play from './views/play'
 import User from './views/user'
+import Result from './views/result'
+
 import SearchUser from './views/search-user.js'
 
 
@@ -28,6 +30,10 @@ const routing = [
   {
     path: '/search/user',
     component: SearchUser
+  },
+  {
+    path: '/result',
+    component: Result
   }
 ]
 
