@@ -1,7 +1,7 @@
-export function fetchLyrics(trackId) {
+export function setLyrics(lyrics) {
   return {
-    type: 'FETCH_LYRICS',
-    trackId
+    type: 'SET_LYRICS',
+    lyrics
   }
 }
 

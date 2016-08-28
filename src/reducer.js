@@ -1,12 +1,11 @@
 import _ from 'lodash'
-import dummyData from './static/dummy.json'
 import {timerInterval, initialState} from './utils'
 
 
 function reducer(state, action) {
   switch (action.type) {
-    case 'FETCH_LYRICS':
-      const timestamps = dummyData
+    case 'SET_LYRICS':
+      const lyrics = action.lyrics
         .message
         .body
         .macro_calls['track.subtitles.get']
@@ -17,7 +16,7 @@ function reducer(state, action) {
         .subtitle_body
 
       return Object.assign({}, state, {
-        lyrics: JSON.parse(timestamps)
+        lyrics: JSON.parse(lyrics)
       })
     case 'UPDATE_TIMER':
       const elapsedTime = state.elapsedTime + timerInterval

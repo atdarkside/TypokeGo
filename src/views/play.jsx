@@ -7,8 +7,9 @@ import LyricPart from '../components/lyricpart'
 
 class Play extends React.Component {
   componentWillMount() {
-    const trackId = 0
-    this.props.fetchLyrics(trackId)
+    fetch(`http://localhost:3333/api/music/json/load/${this.props.params.trackId}`, {mode: 'cors'})
+      .then(_.method('json'))
+      .then(this.props.setLyrics)
   }
 
   componentDidMount() {
