@@ -1,3 +1,5 @@
+//Express
+
 var express    = require('express');
 var app        = express();
 var bodyParser = require('body-parser');
@@ -215,7 +217,7 @@ router.post('/music/initialization', function(req, res) {
 	m001.title = "Stand By Me";
 	m001.artists = "BEN E.KING";
 	m001.icon = "http://s.mxmcdn.net/images-storage/albums/1/1/8/5/8/8/11885811.jpg";
-	m001.youtube_url = "";
+	m001.youtube_url = "https://youtu.be/rugmXGeBCDI";
 	m001.json_path = "./music_json/001.json";
 
 	m002.music_id = 002;
