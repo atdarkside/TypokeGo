@@ -1,0 +1,42 @@
+{
+	"001":
+	{
+		"music_id" : 001,
+		"title" : "Stand By Me",
+		"artists" : "BEN E.KING",
+		"icon" : "",
+		"youtube_url" : ""
+	},
+	"002":
+	{
+		"music_id" : 002,
+		"title" : "Omen",
+		"artists" : "BEN E.KING",
+		"icon" : "",
+		"youtube_url" : ""
+	},
+	"003":
+	{
+		"music_id" : 003,
+		"title" : "Get lucky",
+		"artists" : "BEN E.KING",
+		"icon" : "",
+		"youtube_url" : ""
+	},
+	"004":
+	{
+		"music_id" : 004,
+		"title" : "RapGod",
+		"artists" : "BEN E.KING",
+		"icon" : "",
+		"youtube_url" : ""
+	},
+	"005":
+	{
+		"music_id" : 005,
+		"title" : "ABCSong",
+		"artists" : "BEN E.KING",
+		"icon" : "",
+		"youtube_url" : ""
+	}
+}

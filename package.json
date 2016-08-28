@@ -28,6 +28,9 @@
     "react-router": "^2.7.0",
     "redux": "^3.5.2",
     "webpack": "^1.13.2",
-    "webpack-dev-server": "^1.15.0"
+    "webpack-dev-server": "^1.15.0",
+    "express-session": "^1.14.1",
+    "passport": "^0.3.2",
+    "passport-twitter": "^1.0.4"
   }
 }
