@@ -35,7 +35,6 @@ function reducer(state, action) {
           elapsedTime,
           validTypeCount: 0,
           invalidTypeCount: 0,
-          score: state.score + Number(state.hasSucceed),
           judges: state.judges.concat(hasSucceed ? [] : [false])
         })
       }

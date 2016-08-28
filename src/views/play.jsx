@@ -24,7 +24,7 @@ class Play extends React.Component {
     if (this.props.playingPart === null) {
       clearInterval(this.timer)
       // TODO: Wait for movie finish
-      browserHistory.push(`/result/${this.props.score}`)
+      browserHistory.push(`/result`)
     }
   }
 
