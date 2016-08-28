@@ -1,5 +1,6 @@
 import _ from 'lodash'
 import React from 'react'
+import {Link} from 'react-router'
 import {container} from '../utils'
 
 
@@ -19,7 +20,7 @@ class Top extends React.Component {
           <p>Type your beats.</p>
           <span className="input-wra">
             <input placeholder="musicname" onKeyUp={this.handleKey.bind(this)}></input>
-            {this.state.songs.map((song, i) => <span key={i} className="candidate">{song.title}</span>)}
+            {this.state.songs.map((song, i) => <Link key={i} className="candidate" to={`/play/${song.music_id}`}>{song.title}</Link>)}
             <i className="ion-search"></i>
           </span>
         </div>

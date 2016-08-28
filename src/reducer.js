@@ -4,7 +4,8 @@ import {timerInterval, initialState} from './utils'
 
 function reducer(state, action) {
   switch (action.type) {
-    case 'SET_TRACK':
+      case 'SET_TRACK':
+      console.log(action.trackId)
       const lyrics = require(`./static/json/${action.trackId}.json`)
       return Object.assign({}, state, {lyrics})
     case 'UPDATE_TIMER':
