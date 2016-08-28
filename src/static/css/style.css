@@ -683,6 +683,8 @@ main {
 	height: 100%;
 	text-align: center;
 	background-image: url("../img/music-bg.jpg");
+	background-size: cover;
+	background-position: center;
 }
 .play p {
 	width: 100%;
