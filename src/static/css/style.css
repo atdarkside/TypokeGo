@@ -644,22 +644,84 @@ body {
 
 
 
+@keyframes TypeAnima {
+  0% {
+    transform: scale(1);
+  }
+  35% {
+    transform: scale(0.9);
+  }
+  70% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes burun {
+  0% {
+    top:0.25em;
+  }
+  35% {
+    top:-0.25em;
+  }
+  70% {
+    top:0.25em;
+  }
+  100% {
+    top:-0.25em;
+  }
+}
 
-
+main {
+	width: 100%;
+	height: 100%;
+	position: relative;
+}
+.play {
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	background-image: url("../img/music-bg.jpg");
+}
+.play p {
+	width: 100%;
+	opacity: .5;
+	position: absolute;
+	left: 0em;
+	bottom: -3em;
+	font-family: 'Righteous', cursive;
+	font-size: 3.5em;
+	letter-spacing: 7px;
+	text-shadow: 5px 5px 5px rgba(255,255,255,.35);
+	-webkit-mask-image:-webkit-linear-gradient(-90deg, rgba(0,0,0,1), rgba(0,0,0,0.9) 10%, rgba(0,0,0,0.7) 48%, rgba(0,0,0,0.55) 78%, rgba(0,0,0,0.4));
+	transition :all .5s;
+}
+.play span {
+	transform: scale(1);
+	transition: all .1s;
+}
+.play span {
+	position: relative;
+}
 .play .valid {
   color: green;
 }
 
 .play .invalid {
   color: red;
+  animation: burun .1s linear;
 }
 
 .play .playing {
   font-weight: bold;
+  bottom: 50%;
+  transform: translateY(50%);
+  opacity: 1;
 }
-
-.play {
-  position: absolute;
-  top: 50%;
-  margin-bottom: 1000000000000000%;
+.play .success {
+	animation: TypeAnima .25s linear;
+}
+.play .missing {
+	animation: TypeAnima .25s linear;
 }
