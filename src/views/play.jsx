@@ -19,12 +19,13 @@ class Play extends React.Component {
   componentWillReceiveProps(nextProps) {
     if (this.props.lyrics !== nextProps.lyrics) {
       this.startTimer()
+      console.log(nextProps.lyrics)
     }
 
     if (this.props.playingPart === null) {
       clearInterval(this.timer)
       // TODO: Wait for movie finish
-      browserHistory.push(`/result`)
+      browserHistory.push(`/result/${this.props.params.trackId}/${this.props.judges.filter(_.identity).length * 1000}`)
     }
   }
 
