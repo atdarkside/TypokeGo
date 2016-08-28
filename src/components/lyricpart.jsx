@@ -24,7 +24,6 @@ class LyricPart extends React.Component {
       }
     }
 
-    console.log(this.props.judges)
     let cls = ''
     if (this.props.isPlaying) {
       cls = 'playing'
