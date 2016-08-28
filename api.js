@@ -34,7 +34,7 @@ router.use(function(req, res, next) {
 // ------------------------------ //
 
 router.get('/test', function(req, res) {
-
+	res.json({ message: "神 is God."});
 });
 
 router.get('/isuseragoat', function(req, res) {
