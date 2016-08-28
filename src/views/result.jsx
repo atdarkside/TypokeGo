@@ -8,7 +8,8 @@ class Result extends React.Component {
   constructor() {
     super()
     this.state = {
-      ranking: []
+        ranking: [],
+        aho: ''
     }
   }
 
@@ -24,9 +25,13 @@ class Result extends React.Component {
     })
   }
 
+  componentDidMount() {
+      setTimeout(() => $('.result-view').addClass('active'), 300)
+  }
+
   render() {
     return (
-      <section className="result-view">
+      <section className='result-view'>
         <h3 className="min-title">Score Result</h3>
         <div className="all-wra">
           <div className="score-wra">
