@@ -7,12 +7,6 @@ $(function(){
  			setTimeout(function(el){
  				$(".input-wra").addClass('focus-input-wra');
  			},10);
-    })
-    .focusout(function(e) {
-     	$(".input-wra").removeClass('focus-input-wra');
- 			setTimeout(function(el){
- 				$(".candidate").hide();
- 			},500);
     });
 
   setTimeout(function(){
