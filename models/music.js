@@ -7,7 +7,8 @@ var musicSchema = new Schema({
 	artists : String,
 	icon : String,
 	youtube_url : String,
-	json_path : String
+	json_path : String,
+	deray : Number
 });
 
 module.exports = mongoose.model('Music',musicSchema);
