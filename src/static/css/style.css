@@ -728,3 +728,7 @@ main {
 .play .missing {
 	animation: TypeAnima .25s linear;
 }
+
+iframe {
+	opacity: 0;
+}
